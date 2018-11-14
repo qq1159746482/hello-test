@@ -1,0 +1,51 @@
+1 阿里maven仓库 国内
+	<repositories>
+		<repository>
+			<id>central</id>
+			<name>Central Repository</name>
+			<url>http://maven.aliyun.com/nexus/content/repositories/central</url>
+			<layout>default</layout>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+	
+2 springboot热部署
+	<dependency>  
+            <groupId>org.springframework.boot</groupId>  
+            <artifactId>spring-boot-devtools</artifactId>  
+            <optional>true</optional>  
+  	</dependency>  
+	
+3 熔断器
+	熔断 大意是集群系统 流程的个别服务发生阻塞 请求量大 导致系统瘫痪
+	<dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+  </dependency>
+
+  
+4 注解
+	今天在写程序的时候看见一个以前没有见过的注解（@Component），在网上查找过后，经过实践，决定把它记录下来。 
+	1、@controller 控制器（注入服务）
+
+	用于标注控制层，相当于struts中的action层
+	2、@service 服务（注入dao）
+
+	用于标注服务层，主要用来进行业务的逻辑处理
+	3、@repository（实现dao访问）
+
+	用于标注数据访问层，也可以说用于标注数据访问组件，即DAO组件.
+	4、@component （把普通pojo实例化到spring容器中，相当于配置文件中的 
+	<bean id="" class=""/>）
+
+	泛指各种组件，就是说当我们的类不属于各种归类的时候（不属于@Controller、@Services等的时候），我们就可以使用@Component来标注这个类。
+	案例： 
+	<context:component-scan base-package=”com.*”> 
+	上面的这个例子是引入Component组件的例子，其中base-package表示为需要扫描的所有子包。 
+	共同点：被@controller 、@service、@repository 、@component 注解的类，都会把这些类纳入进spring容器中进行管理
+
+5 Zuul
+	Zuul的主要功能是路由转发和过滤器。路由功能是微服务的一部分，比如／api/user转发到到user服务，
+	/api/shop转发到到shop服务。zuul默认和Ribbon结合实现了负载均衡的功能。
