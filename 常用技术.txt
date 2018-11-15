@@ -1,4 +1,4 @@
-1 阿里maven仓库 国内
+1 阿里maven仓库 国内test
 	<repositories>
 		<repository>
 			<id>central</id>
